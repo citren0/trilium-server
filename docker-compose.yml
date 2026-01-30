@@ -1,0 +1,30 @@
+
+services:
+  webserver:
+    image: nginx:latest
+    restart: unless-stopped
+    ports:
+      - "5678:5678"
+    volumes:
+      - ./nginx-conf:/etc/nginx/conf.d
+      - ./certs:/certs
+    depends_on:
+      - trilium
+    networks:
+      - default
+
+  trilium:
+    hostname: trilium
+    image: triliumnext/trilium:latest
+    restart: unless-stopped
+    environment:
+      - TRILIUM_DATA_DIR=/home/node/trilium-data
+    expose:
+      - 8080
+    volumes:
+      - ${TRILIUM_DATA_DIR:-~/trilium-data}:/home/node/trilium-data
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+
+networks:
+  default:

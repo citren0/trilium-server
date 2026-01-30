@@ -1,0 +1,13 @@
+[Unit]
+Description=Trilium docker containers and reverse proxy
+After=docker.service
+Requires=docker.service
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/bin/bash -c "docker compose -f /home/user/trilium-server/docker-compose.yaml up --detach"
+ExecStop=/bin/bash -c "docker compose -f /home/user/trilium-server/docker-compose.yaml stop"
+
+[Install]
+WantedBy=multi-user.target
