@@ -22,7 +22,7 @@ services:
     expose:
       - 8080
     volumes:
-      - ${TRILIUM_DATA_DIR:-/home/user/trilium-data}:/home/node/trilium-data
+      - /home/user/trilium-data:/home/node/trilium-data
       - /etc/timezone:/etc/timezone:ro
       - /etc/localtime:/etc/localtime:ro
 
