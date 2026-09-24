@@ -4,7 +4,7 @@ services:
     image: nginx:latest
     restart: unless-stopped
     ports:
-      - "5678:5678"
+      - "${BIND_IP:-0.0.0.0}:5678:5678"
     volumes:
       - ./nginx-conf:/etc/nginx/conf.d
       - ./certs:/certs
