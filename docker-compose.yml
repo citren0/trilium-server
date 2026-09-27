@@ -14,7 +14,7 @@ services:
     networks:
       - default
     healthcheck:
-      test: ["CMD", "curl", "-fk", "https://localhost:5678/"]
+      test: ["CMD", "curl", "-fk", "https://localhost:5678/healthz"]
       interval: 10s
       timeout: 5s
       retries: 3
